@@ -1,0 +1,32 @@
+{
+	"name": "mediawiki/relpath",
+	"description": "Compute a relative filepath to some path either from the current directory or from an optional start directory.",
+	"license": "MIT",
+	"homepage": "https://www.mediawiki.org/wiki/RelPath",
+	"authors": [
+		{
+			"name": "Ori Livneh",
+			"email": "ori@wikimedia.org"
+		}
+	],
+	"autoload": {
+		"files": [
+			"src/RelPath.php"
+		]
+	},
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "^0.9.0.0",
+		"phpunit/phpunit": "^4.8.9.0",
+		"mediawiki/mediawiki-codesniffer": "^0.4.0.0"
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor",
+			"phpunit $PHPUNIT_ARGS",
+			"phpcs -p"
+		]
+	}
+}
