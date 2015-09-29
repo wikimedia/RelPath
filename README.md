@@ -8,8 +8,12 @@ Here is how you use it:
 
 ```php
 
-$path = RelPath\getRelativePath( '/srv/mediawiki/resources/src/startup.js', '/srv/mediawiki' );
+$relPath = RelPath\getRelativePath( '/srv/mediawiki/resources/src/startup.js', '/srv/mediawiki' );
 // Result: string(24) "resources/src/startup.js"
+
+$fullPath = RelPath\joinPath( '/srv/mediawiki', 'resources/src/startup.js' );
+// Result: string(39) "/srv/mediawiki/resources/src/startup.js"
+
 
 ```
 

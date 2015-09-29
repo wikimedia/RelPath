@@ -30,20 +30,22 @@ namespace RelPath;
 /**
  * Split a path into path components.
  *
- * @param string $path File path. Must exist.
- * @return array|bool Array of path components or false if file does not exist.
+ * @param string $path File path.
+ * @return array Array of path components.
  */
 function splitPath( $path ) {
-	$path = rtrim( $path, '/' );
-	if ( !$path ) {
-		return array();
-	}
 	$fragments = array();
-	while ( ( $cur = pathinfo( $path, PATHINFO_DIRNAME ) ) !== '/' ) {
-		$fragments[] = substr( $path, strlen( $cur ) + 1 );
+	while ( true ) {
+		$cur = dirname( $path );
+		if ( $cur === $path || ( $cur === '.' && basename( $path ) === $path ) ) {
+			break;
+		}
+		$fragments[] = trim( substr( $path, strlen( $cur ) ), '/' );
 		$path = $cur;
 	}
-	$fragments[] = trim( $path, '/' );
+	if ( $path !== '' ) {
+		$fragments[] = trim( $path, '/' );
+	}
 	return array_reverse( $fragments );
 }
 
@@ -85,4 +87,41 @@ function getRelativePath( $path, $start = null ) {
 	$relList = array_merge( $relList, array_slice( $pathParts, $i ) );
 
 	return implode( '/', $relList ) ?: '.';
+}
+
+
+/**
+ * Join path components.
+ *
+ * @param string $base Base path.
+ * @param string $path File path to join to base path.
+ * @return string
+ */
+function joinPath( $base, $path ) {
+	if ( substr( $path, 0, 1 ) === '/' ) {
+		return $path;  // $path is absolute.
+	}
+
+	if ( substr( $base, 0, 1 ) !== '/' ) {
+		return false;
+	}
+
+	$pathParts = splitPath( $path );
+	$resultParts = splitPath( $base );
+
+	while ( ( $part = array_shift( $pathParts ) ) !== null ) {
+		switch ( $part ) {
+		case '.':
+			break;
+		case '..':
+			if ( count( $resultParts ) > 1 ) {
+				array_pop( $resultParts );
+			}
+			break;
+		default:
+			$resultParts[] = $part;
+			break;
+		}
+	}
+	return implode( '/', $resultParts );
 }

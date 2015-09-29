@@ -27,7 +27,7 @@
 
 class RelPathTest extends \PHPUnit_Framework_TestCase {
 
-	public function provideTestCases() {
+	public function provideRelPathTestCases() {
 		return array(
 			array( '/foo/bar/', '/foo/bar/baz/', '..' ),
 			array( '/foo/bar/', '/foo/bar/baz.txt', '..' ),
@@ -58,11 +58,32 @@ class RelPathTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function provideJoinPathTestCases() {
+		return array(
+			array( '/foo/bar', './baz', '/foo/bar/baz' ),
+			array( '/foo/bar', '/tmp/file/', '/tmp/file/' ),
+			array( '/foo/bar', 'file', '/foo/bar/file' ),
+			array( '/foo/bar', '.file', '/foo/bar/.file' ),
+			array( '/foo//bar', '../baz', '/foo/baz' ),
+			array( '/foo//bar', '../../baz', '/baz' ),
+			array( '/foo//bar', '../../../baz', '/baz' ),
+			array( '/', '../../../baz', '/baz' ),
+		);
+	}
+
 	/**
-	 * @dataProvider provideTestCases
+	 * @dataProvider provideRelPathTestCases
 	 * @covers RelPath\getRelativePath
 	 */
 	public function testRelPath( $path, $start, $expected ) {
 		$this->assertEquals( $expected, RelPath\getRelativePath( $path, $start ) );
+	}
+
+	/**
+	 * @dataProvider provideJoinPathTestCases
+	 * @covers RelPath\joinPath
+	 */
+	public function testJoinPath( $base, $path, $expected ) {
+		$this->assertEquals( $expected, RelPath\joinPath( $base, $path ) );
 	}
 }
