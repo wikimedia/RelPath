@@ -35,17 +35,30 @@ namespace RelPath;
  */
 function splitPath( $path ) {
 	$fragments = array();
+
 	while ( true ) {
 		$cur = dirname( $path );
 		if ( $cur === $path || ( $cur === '.' && basename( $path ) === $path ) ) {
 			break;
 		}
-		$fragments[] = trim( substr( $path, strlen( $cur ) ), '/' );
+
+		$fragment = trim( substr( $path, strlen( $cur ) ), '/' );
+
+		if ( !$fragments ) {
+			$fragments[] = $fragment;
+		} elseif ( $fragment === '..' && basename( $cur ) !== '..' ) {
+			$cur = dirname( $cur );
+		} elseif ( $fragment !== '.' ) {
+			$fragments[] = $fragment;
+		}
+
 		$path = $cur;
 	}
+
 	if ( $path !== '' ) {
 		$fragments[] = trim( $path, '/' );
 	}
+
 	return array_reverse( $fragments );
 }
 
@@ -103,7 +116,7 @@ function joinPath( $base, $path ) {
 	}
 
 	if ( substr( $base, 0, 1 ) !== '/' ) {
-		return false;
+		return false;  // $base is relative.
 	}
 
 	$pathParts = splitPath( $path );
@@ -123,5 +136,6 @@ function joinPath( $base, $path ) {
 			break;
 		}
 	}
+
 	return implode( '/', $resultParts );
 }

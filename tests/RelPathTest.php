@@ -62,12 +62,18 @@ class RelPathTest extends \PHPUnit_Framework_TestCase {
 		return array(
 			array( '/foo/bar', './baz', '/foo/bar/baz' ),
 			array( '/foo/bar', '/tmp/file/', '/tmp/file/' ),
+			array( '/foo/0/bar', '/tmp/0/file/', '/tmp/0/file/' ),
+			array( '/foo/./bar', '/tmp/0/.file/', '/tmp/0/.file/' ),
+			array( '/foo/./bar', 'tmp/0/.file/', '/foo/bar/tmp/0/.file' ),
 			array( '/foo/bar', 'file', '/foo/bar/file' ),
 			array( '/foo/bar', '.file', '/foo/bar/.file' ),
 			array( '/foo//bar', '../baz', '/foo/baz' ),
+			array( '/foo/bar', '../././baz/.', '/foo/baz' ),
 			array( '/foo//bar', '../../baz', '/baz' ),
 			array( '/foo//bar', '../../../baz', '/baz' ),
 			array( '/', '../../../baz', '/baz' ),
+			array( '/foo/bar/../baz', 'quux', '/foo/baz/quux' ),
+			array( 'foo/bar', 'quux', false ),
 		);
 	}
 
