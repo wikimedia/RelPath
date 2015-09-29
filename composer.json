@@ -1,6 +1,6 @@
 {
-	"name": "mediawiki/relpath",
-	"description": "Compute a relative filepath to some path either from the current directory or from an optional start directory.",
+	"name": "wikimedia/relpath",
+	"description": "Compute a relative filepath between two paths.",
 	"license": "MIT",
 	"homepage": "https://www.mediawiki.org/wiki/RelPath",
 	"authors": [
