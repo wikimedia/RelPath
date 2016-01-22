@@ -69,7 +69,7 @@ function splitPath( $path ) {
  * @param string $path File path.
  * @param string $start Start directory. Optional; if not specified, the current
  *  working directory will be used.
- * @return array|bool Array of path components or false if file does not exist.
+ * @return string|bool Relative path, or false if input was invalid.
  */
 function getRelativePath( $path, $start = null ) {
 	if ( $start === null ) {
