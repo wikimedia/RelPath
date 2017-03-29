@@ -55,6 +55,7 @@ class RelPathTest extends \PHPUnit_Framework_TestCase {
 			array( '/', '/', '.' ),
 			array( '/a', '/a', '.' ),
 			array( '/a/b', '/a/b', '.' ),
+			array( 'foo/bar', 'quux', false ),
 		);
 	}
 

@@ -73,8 +73,10 @@ function splitPath( $path ) {
  */
 function getRelativePath( $path, $start = null ) {
 	if ( $start === null ) {
+		// @codeCoverageIgnoreStart
 		$start = getcwd();
 	}
+	// @codeCoverageIgnoreEnd
 
 	if ( substr( $path, 0, 1 ) !== '/' || substr( $start, 0, 1 ) !== '/' ) {
 		return false;
