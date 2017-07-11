@@ -38,6 +38,14 @@ function splitPath( $path ) {
 
 	while ( true ) {
 		$cur = dirname( $path );
+		if ( $cur[0] === DIRECTORY_SEPARATOR ) {
+			// dirname() on Windows sometimes returns a leading backslash, but other
+			// times retains the leading forward slash. Slashes other than the leading one
+			// are returned as-is, and therefore do not need to be touched.
+			// Furthermore, don't break on *nix where \ is allowed in file/directory names.
+			$cur[0] = '/';
+		}
+
 		if ( $cur === $path || ( $cur === '.' && basename( $path ) === $path ) ) {
 			break;
 		}
