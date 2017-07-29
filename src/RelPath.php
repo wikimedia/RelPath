@@ -34,7 +34,7 @@ namespace RelPath;
  * @return array Array of path components.
  */
 function splitPath( $path ) {
-	$fragments = array();
+	$fragments = [];
 
 	while ( true ) {
 		$cur = dirname( $path );
@@ -105,13 +105,12 @@ function getRelativePath( $path, $start = null ) {
 
 	$relList = ( $countStartParts > $i )
 		? array_fill( 0, $countStartParts - $i, '..' )
-		: array();
+		: [];
 
 	$relList = array_merge( $relList, array_slice( $pathParts, $i ) );
 
 	return implode( '/', $relList ) ?: '.';
 }
-
 
 /**
  * Join path components.
@@ -122,11 +121,13 @@ function getRelativePath( $path, $start = null ) {
  */
 function joinPath( $base, $path ) {
 	if ( substr( $path, 0, 1 ) === '/' ) {
-		return $path;  // $path is absolute.
+		// $path is absolute.
+		return $path;
 	}
 
 	if ( substr( $base, 0, 1 ) !== '/' ) {
-		return false;  // $base is relative.
+		// $base is relative.
+		return false;
 	}
 
 	$pathParts = splitPath( $path );
