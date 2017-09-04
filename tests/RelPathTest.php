@@ -83,13 +83,13 @@ class RelPathTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider provideRelPathTestCases
 	 */
 	public function testRelPath( $path, $start, $expected ) {
-		$this->assertEquals( $expected, RelPath\getRelativePath( $path, $start ) );
+		$this->assertEquals( $expected, \Wikimedia\RelPath::getRelativePath( $path, $start ) );
 	}
 
 	/**
 	 * @dataProvider provideJoinPathTestCases
 	 */
 	public function testJoinPath( $base, $path, $expected ) {
-		$this->assertEquals( $expected, RelPath\joinPath( $base, $path ) );
+		$this->assertEquals( $expected, \Wikimedia\RelPath::joinPath( $base, $path ) );
 	}
 }
