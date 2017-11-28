@@ -11,7 +11,8 @@
 	],
 	"autoload": {
 		"files": [
-			"src/RelPath.php"
+			"src/RelPath/RelPath.php",
+			"src/Wikimedia/RelPath.php"
 		]
 	},
 	"require": {
