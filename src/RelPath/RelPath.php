@@ -60,5 +60,5 @@ function getRelativePath( $path, $start = null ) {
  * @return string
  */
 function joinPath( $base, $path ) {
-	return RelPath::oinPath( $base, $path );
+	return RelPath::joinPath( $base, $path );
 }
