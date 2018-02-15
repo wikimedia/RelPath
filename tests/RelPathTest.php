@@ -25,7 +25,7 @@
  * @author Ori Livneh <ori@wikimedia.org>
  */
 
-class RelPathTest extends \PHPUnit_Framework_TestCase {
+class RelPathTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideRelPathTestCases() {
 		return [
