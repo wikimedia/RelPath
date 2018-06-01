@@ -76,7 +76,7 @@ class RelPath {
 	 * an optional start directory. Both paths must be absolute.
 	 *
 	 * @param string $path File path.
-	 * @param string $start Start directory. Optional; if not specified, the current
+	 * @param string|null $start Start directory. Optional; if not specified, the current
 	 *  working directory will be used.
 	 * @return string|bool Relative path, or false if input was invalid.
 	 */
