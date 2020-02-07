@@ -75,6 +75,7 @@ class RelPathTest extends \PHPUnit\Framework\TestCase {
 			[ '/foo//bar', '../../../baz', '/baz' ],
 			[ '/', '../../../baz', '/baz' ],
 			[ '/foo/bar/../baz', 'quux', '/foo/baz/quux' ],
+			[ '/foo/bar', '../quux/../baz.txt', '/foo/baz.txt' ],
 			[ 'foo/bar', 'quux', false ],
 		];
 	}
