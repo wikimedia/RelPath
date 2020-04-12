@@ -27,6 +27,9 @@
 
 namespace Wikimedia;
 
+/**
+ * Utilities for computing a relative filepath between two paths.
+ */
 class RelPath {
 	/**
 	 * Split a path into path components.
@@ -114,7 +117,21 @@ class RelPath {
 	}
 
 	/**
-	 * Join path components.
+	 * Join two path components.
+	 *
+	 * This can be used to expand a path relative to a given base path.
+	 * The given path may also be absolute, in which case it is returned
+	 * directly.
+	 *
+	 * @code
+	 *     RelPath::joinPath('/srv/foo', 'bar');        # '/srv/foo/bar'
+	 *     RelPath::joinPath('/srv/foo', './bar');      # '/srv/foo/bar'
+	 *     RelPath::joinPath('/srv//foo', '../baz');    # '/srv/baz'
+	 *     RelPath::joinPath('/srv/foo', '/var/quux/'); # '/var/quux/'
+	 * @endcode
+	 *
+	 * This function is similar to `os.path.join()` in Python,
+	 * and `path.join()` in Node.js.
 	 *
 	 * @param string $base Base path.
 	 * @param string $path File path to join to base path.

@@ -1,6 +1,6 @@
 # Doxyfile for RelPath
 #
-# See <http://www.stack.nl/~dimitri/doxygen/manual/config.html>
+# See <http://doxygen.nl/manual/config.html>
 # for help on how to use this file to configure Doxygen.
 
 PROJECT_NAME           = "RelPath"
@@ -13,7 +13,7 @@ INPUT                  = README.md src/
 FILE_PATTERNS          = *.php
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = README.md
-FILTER_PATTERNS        = *md=build/doxygen_escape.sh
+FILTER_PATTERNS        = *.md=build/doxygen_escape.sh
 HTML_DYNAMIC_SECTIONS  = YES
 GENERATE_TREEVIEW      = YES
 TREEVIEW_WIDTH         = 250

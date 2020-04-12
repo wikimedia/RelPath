@@ -8,11 +8,17 @@ Here is how you use it:
 
 <pre lang="php">
 $relPath = \Wikimedia\RelPath::getRelativePath( '/srv/mediawiki/resources/src/startup.js', '/srv/mediawiki' );
-// Result: string(24) "resources/src/startup.js"
+// Result: "resources/src/startup.js"
 
 $fullPath = \Wikimedia\RelPath::joinPath( '/srv/mediawiki', 'resources/src/startup.js' );
-// Result: string(39) "/srv/mediawiki/resources/src/startup.js"
+// Result: "/srv/mediawiki/resources/src/startup.js"
+
+$fullPath = \Wikimedia\RelPath::joinPath( '/srv/mediawiki', '/var/startup/startup.js' );
+// Result: "/var/startup/startup.js"
 </pre>
+
+The `RelPath::joinPath()` function provided here is analogous to `os.path.join()` in Python,
+and `path.join()` found in Node.js.
 
 License
 -------
