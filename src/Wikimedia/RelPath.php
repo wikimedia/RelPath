@@ -35,7 +35,7 @@ class RelPath {
 	 * Split a path into path components.
 	 *
 	 * @param string $path File path.
-	 * @return array Array of path components.
+	 * @return string[] Array of path components.
 	 */
 	public static function splitPath( $path ) {
 		$fragments = [];

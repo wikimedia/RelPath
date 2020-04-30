@@ -25,7 +25,26 @@
  * @author Ori Livneh <ori@wikimedia.org>
  */
 
+/**
+ * @covers Wikimedia\RelPath
+ */
 class RelPathTest extends \PHPUnit\Framework\TestCase {
+	public function testSplitPath() {
+		$this->assertEquals(
+			[ '', 'foo', 'bar', 'baz.txt' ],
+			Wikimedia\RelPath::splitPath( '/foo/bar/baz.txt' )
+		);
+
+		$this->assertEquals(
+			[ '', 'foo', 'bar', 'baz.txt' ],
+			Wikimedia\RelPath::splitPath( '/foo/bar/./baz.txt' )
+		);
+
+		$this->assertEquals(
+			[ '', 'foo', 'baz.txt' ],
+			Wikimedia\RelPath::splitPath( '/foo/bar/../baz.txt' )
+		);
+	}
 
 	public function provideRelPathTestCases() {
 		return [
