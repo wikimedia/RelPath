@@ -37,7 +37,7 @@ class RelPath {
 	 * @param string $path File path.
 	 * @return string[] Array of path components.
 	 */
-	public static function splitPath( $path ) {
+	public static function splitPath( string $path ) : array {
 		$fragments = [];
 
 		while ( true ) {
@@ -81,9 +81,9 @@ class RelPath {
 	 * @param string $path File path.
 	 * @param string|null $start Start directory. Optional; if not specified, the current
 	 *  working directory will be used.
-	 * @return string|bool Relative path, or false if input was invalid.
+	 * @return string|false Relative path, or false if input was invalid.
 	 */
-	public static function getRelativePath( $path, $start = null ) {
+	public static function getRelativePath( string $path, string $start = null ) {
 		if ( $start === null ) {
 			// @codeCoverageIgnoreStart
 			$start = getcwd();
@@ -135,9 +135,9 @@ class RelPath {
 	 *
 	 * @param string $base Base path.
 	 * @param string $path File path to join to base path.
-	 * @return string
+	 * @return string|false Combined path, or false if input was invalid.
 	 */
-	public static function joinPath( $base, $path ) {
+	public static function joinPath( string $base, string $path ) {
 		if ( substr( $path, 0, 1 ) === '/' ) {
 			// $path is absolute.
 			return $path;
