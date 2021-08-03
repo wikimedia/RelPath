@@ -1,14 +1,16 @@
 # Changelog
 
-## UNRELEASED
+## 3.0.0
 
 The library now requires PHP 7.2 or later.
+
+Changed:
+* Add strict type hints to `RelPath::joinPath()` and other RelPath methods.
 
 Removed:
 
 * The `RelPath` namespace, deprecated in 2.1.0, has been removed.
   Use `Wikimedia\RelPath` instead.
-
 * PHP 5.5, 5.6, 7.0, and 7.1 are no longer supported.
 
 ## 2.1.1
