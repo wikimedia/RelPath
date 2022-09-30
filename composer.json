@@ -10,9 +10,9 @@
 		}
 	],
 	"autoload": {
-		"files": [
-			"src/Wikimedia/RelPath.php"
-		]
+		"psr-4": {
+			"Wikimedia\\": "src/"
+		}
 	},
 	"require": {
 		"php": ">=7.2.9"
