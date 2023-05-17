@@ -4,7 +4,7 @@
 # for help on how to use this file to configure Doxygen.
 
 PROJECT_NAME           = "RelPath"
-PROJECT_BRIEF          = "Compute a relative filepath between two paths"
+PROJECT_BRIEF          = "Work with file paths to join or find the relative path"
 OUTPUT_DIRECTORY       = doc
 JAVADOC_AUTOBRIEF      = YES
 QT_AUTOBRIEF           = YES

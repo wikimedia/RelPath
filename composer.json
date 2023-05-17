@@ -1,6 +1,16 @@
 {
 	"name": "wikimedia/relpath",
-	"description": "Compute a relative filepath between two paths.",
+	"description": "Work with file paths to join or find the relative path",
+	"keywords": [
+		"file",
+		"filepath",
+		"filesystem",
+		"join",
+		"normalize",
+		"os",
+		"path",
+		"system"
+	],
 	"license": "MIT",
 	"homepage": "https://www.mediawiki.org/wiki/RelPath",
 	"authors": [
