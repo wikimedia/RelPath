@@ -151,18 +151,19 @@ class RelPath {
 		$pathParts = self::splitPath( $path );
 		$resultParts = self::splitPath( $base );
 
+		// @phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $part = array_shift( $pathParts ) ) !== null ) {
 			switch ( $part ) {
-			case '.':
-				break;
-			case '..':
-				if ( count( $resultParts ) > 1 ) {
-					array_pop( $resultParts );
-				}
-				break;
-			default:
-				$resultParts[] = $part;
-				break;
+				case '.':
+					break;
+				case '..':
+					if ( count( $resultParts ) > 1 ) {
+						array_pop( $resultParts );
+					}
+					break;
+				default:
+					$resultParts[] = $part;
+					break;
 			}
 		}
 
