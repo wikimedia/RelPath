@@ -25,24 +25,27 @@
  * @author Ori Livneh <ori@wikimedia.org>
  */
 
+use PHPUnit\Framework\TestCase;
+use Wikimedia\RelPath;
+
 /**
- * @covers Wikimedia\RelPath
+ * @covers \Wikimedia\RelPath
  */
-class RelPathTest extends \PHPUnit\Framework\TestCase {
+class RelPathTest extends TestCase {
 	public function testSplitPath() {
 		$this->assertEquals(
 			[ '', 'foo', 'bar', 'baz.txt' ],
-			Wikimedia\RelPath::splitPath( '/foo/bar/baz.txt' )
+			RelPath::splitPath( '/foo/bar/baz.txt' )
 		);
 
 		$this->assertEquals(
 			[ '', 'foo', 'bar', 'baz.txt' ],
-			Wikimedia\RelPath::splitPath( '/foo/bar/./baz.txt' )
+			RelPath::splitPath( '/foo/bar/./baz.txt' )
 		);
 
 		$this->assertEquals(
 			[ '', 'foo', 'baz.txt' ],
-			Wikimedia\RelPath::splitPath( '/foo/bar/../baz.txt' )
+			RelPath::splitPath( '/foo/bar/../baz.txt' )
 		);
 	}
 
@@ -103,13 +106,13 @@ class RelPathTest extends \PHPUnit\Framework\TestCase {
 	 * @dataProvider provideRelPathTestCases
 	 */
 	public function testRelPath( $path, $start, $expected ) {
-		$this->assertEquals( $expected, \Wikimedia\RelPath::getRelativePath( $path, $start ) );
+		$this->assertEquals( $expected, RelPath::getRelativePath( $path, $start ) );
 	}
 
 	/**
 	 * @dataProvider provideJoinPathTestCases
 	 */
 	public function testJoinPath( $base, $path, $expected ) {
-		$this->assertEquals( $expected, \Wikimedia\RelPath::joinPath( $base, $path ) );
+		$this->assertEquals( $expected, RelPath::joinPath( $base, $path ) );
 	}
 }
