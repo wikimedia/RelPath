@@ -83,7 +83,7 @@ class RelPath {
 	 *  working directory will be used.
 	 * @return string|false Relative path, or false if input was invalid.
 	 */
-	public static function getRelativePath( string $path, string $start = null ) {
+	public static function getRelativePath( string $path, ?string $start = null ) {
 		if ( $start === null ) {
 			// @codeCoverageIgnoreStart
 			$start = getcwd();
