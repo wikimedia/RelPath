@@ -79,20 +79,18 @@ class RelPathTest extends TestCase {
 			'noop subdir'                   => [ '/a', '/a', '.' ],
 			'noop nested'                   => [ '/a/b', '/a/b', '.' ],
 			'base invalid'                  => [ 'foo/bar', 'quux', false ],
-			// T388323
-			// 'intermediate two'              => [ '/a/bat/cat/dog/boy/../../assets/img.png',
-			// 	'/a/bat/cat', 'assets/img.png'
-			// ],
-			// 'intermediate three'            => [ '/a/bat/cat/dog/boy/../../../assets/x.txt',
-			// 	'/a/bat', 'assets/x.txt'
-			// ],
-			// 'intermediate overflow'         => [ '/a/bat/cat/dog/../../../../eagle/x.txt',
-			// 	'/a/bat', '../../eagle/x.txt'
-			// ],
-			// 'intermediate back and forth'   => [
-			// 	'/a/bat/cat/dog/eagle/egg1/../egg2/../egg3/../../../assets/x.txt',
-			// 	'/a/bat', 'cat/assets/x.txt'
-			// ],
+			'intermediate two'              => [ '/a/bat/cat/dog/boy/../../assets/img.png',
+				'/a/bat/cat', 'assets/img.png'
+			],
+			'intermediate three'            => [ '/a/bat/cat/dog/boy/../../../assets/x.txt',
+				'/a/bat', 'assets/x.txt'
+			],
+			'intermediate overflow'         => [ '/a/bat/cat/dog/../../../../eagle/x.txt',
+				'/a/bat', '../../eagle/x.txt'
+			],
+			'intermediate back and forth'   => [ '/a/bat/cat/dog/eagle/egg1/../egg2/../egg3/../../../assets/x.txt',
+				'/a/bat', 'cat/assets/x.txt'
+			],
 		];
 	}
 
