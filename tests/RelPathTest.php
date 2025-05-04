@@ -52,7 +52,7 @@ class RelPathTest extends TestCase {
 		);
 	}
 
-	public function provideRelPathTestCases() {
+	public static function provideRelPathTestCases() {
 		return [
 			'parent slash from subdir'      => [ '/foo/bar/', '/foo/bar/baz/', '..' ],
 			'parent noslash from subdir'    => [ '/foo/bar', '/foo/bar/baz/', '..' ],
@@ -94,7 +94,7 @@ class RelPathTest extends TestCase {
 		];
 	}
 
-	public function provideJoinPathTestCases() {
+	public static function provideJoinPathTestCases() {
 		return [
 			'dot relative'                    => [ '/foo/bar', './baz', '/foo/bar/baz' ],
 			'absolute'                        => [ '/foo/bar', '/tmp/file/', '/tmp/file/' ],
