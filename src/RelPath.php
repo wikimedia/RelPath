@@ -98,7 +98,7 @@ class RelPath {
 		}
 		// @codeCoverageIgnoreEnd
 
-		if ( strpos( $path, '/' ) !== 0 || strpos( $start, '/' ) !== 0 ) {
+		if ( !str_starts_with( $path, '/' ) || !str_starts_with( $start, '/' ) ) {
 			return false;
 		}
 
@@ -146,12 +146,12 @@ class RelPath {
 	 * @return string|false Combined path, or false if input was invalid.
 	 */
 	public static function joinPath( string $base, string $path ) {
-		if ( strpos( $path, '/' ) === 0 ) {
+		if ( str_starts_with( $path, '/' ) ) {
 			// $path is absolute.
 			return $path;
 		}
 
-		if ( strpos( $base, '/' ) !== 0 ) {
+		if ( !str_starts_with( $base, '/' ) ) {
 			// $base is relative.
 			return false;
 		}
