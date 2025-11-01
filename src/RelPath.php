@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * Copyright (c) 2015 Ori Livneh <ori@wikimedia.org>
  *
@@ -91,7 +93,7 @@ class RelPath {
 	 *  working directory will be used.
 	 * @return string|false Relative path, or false if input was invalid.
 	 */
-	public static function getRelativePath( string $path, ?string $start = null ) {
+	public static function getRelativePath( string $path, ?string $start = null ): string|false {
 		if ( $start === null ) {
 			// @codeCoverageIgnoreStart
 			$start = getcwd();
@@ -145,7 +147,7 @@ class RelPath {
 	 * @param string $path File $path to join to $base path.
 	 * @return string|false Combined path, or false if input was invalid.
 	 */
-	public static function joinPath( string $base, string $path ) {
+	public static function joinPath( string $base, string $path ): string|false {
 		if ( str_starts_with( $path, '/' ) ) {
 			// $path is absolute.
 			return $path;

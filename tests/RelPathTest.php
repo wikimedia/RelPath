@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * Copyright (c) 2015 Ori Livneh <ori@wikimedia.org>
  *
@@ -33,19 +35,19 @@ use Wikimedia\RelPath;
  */
 class RelPathTest extends TestCase {
 	public function testSplitPath() {
-		$this->assertEquals(
+		$this->assertSame(
 			[ '', 'foo', 'bar', 'baz.txt' ],
 			RelPath::splitPath( '/foo/bar/baz.txt' ),
 			'simple'
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			[ '', 'foo', 'bar', 'baz.txt' ],
 			RelPath::splitPath( '/foo/bar/./baz.txt' ),
 			'dot'
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			[ '', 'foo', 'baz.txt' ],
 			RelPath::splitPath( '/foo/bar/../baz.txt' ),
 			'dotdot'
@@ -123,14 +125,14 @@ class RelPathTest extends TestCase {
 	/**
 	 * @dataProvider provideRelPathTestCases
 	 */
-	public function testRelPath( $path, $start, $expected ) {
-		$this->assertEquals( $expected, RelPath::getRelativePath( $path, $start ) );
+	public function testRelPath( string $path, string $start, string|false $expected ) {
+		$this->assertSame( $expected, RelPath::getRelativePath( $path, $start ) );
 	}
 
 	/**
 	 * @dataProvider provideJoinPathTestCases
 	 */
-	public function testJoinPath( $base, $path, $expected ) {
-		$this->assertEquals( $expected, RelPath::joinPath( $base, $path ) );
+	public function testJoinPath( string $base, string $path, string|false $expected ) {
+		$this->assertSame( $expected, RelPath::joinPath( $base, $path ) );
 	}
 }
