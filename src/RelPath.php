@@ -39,7 +39,7 @@ class RelPath {
 	 * @param string $path File path.
 	 * @return string[] Array of path components.
 	 */
-	public static function splitPath( string $path ): array {
+	private static function splitPath( string $path ): array {
 		$fragments = [];
 		$countDots = 0;
 

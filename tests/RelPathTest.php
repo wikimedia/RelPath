@@ -34,26 +34,6 @@ use Wikimedia\RelPath;
  * @covers \Wikimedia\RelPath
  */
 class RelPathTest extends TestCase {
-	public function testSplitPath() {
-		$this->assertSame(
-			[ '', 'foo', 'bar', 'baz.txt' ],
-			RelPath::splitPath( '/foo/bar/baz.txt' ),
-			'simple'
-		);
-
-		$this->assertSame(
-			[ '', 'foo', 'bar', 'baz.txt' ],
-			RelPath::splitPath( '/foo/bar/./baz.txt' ),
-			'dot'
-		);
-
-		$this->assertSame(
-			[ '', 'foo', 'baz.txt' ],
-			RelPath::splitPath( '/foo/bar/../baz.txt' ),
-			'dotdot'
-		);
-	}
-
 	public static function provideRelPathTestCases() {
 		return [
 			'parent slash from subdir'      => [ '/foo/bar/', '/foo/bar/baz/', '..' ],
