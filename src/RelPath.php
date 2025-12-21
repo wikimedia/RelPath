@@ -158,25 +158,26 @@ class RelPath {
 			return false;
 		}
 
-		$pathParts = self::splitPath( $path );
-		$resultParts = self::splitPath( $base );
+		$pathStr = $base . '/' . $path;
+		// Normalize backslashes to slashes, but only on Windows.
+		// On *nix, a backslash is a valid filename character and must be preserved.
+		if ( DIRECTORY_SEPARATOR === '\\' ) {
+			$pathStr = str_replace( '\\', '/', $pathStr );
+		}
+		$parts = explode( '/', $pathStr );
+		$stack = [];
 
-		// @phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
-		while ( ( $part = array_shift( $pathParts ) ) !== null ) {
-			switch ( $part ) {
-				case '.':
-					break;
-				case '..':
-					if ( count( $resultParts ) > 1 ) {
-						array_pop( $resultParts );
-					}
-					break;
-				default:
-					$resultParts[] = $part;
-					break;
+		foreach ( $parts as $part ) {
+			if ( $part === '..' ) {
+				if ( count( $stack ) > 0 ) {
+					array_pop( $stack );
+				}
+			} elseif ( $part !== '' && $part !== '.' ) {
+				$stack[] = $part;
 			}
 		}
 
-		return implode( '/', $resultParts );
+		// Since $base is absolute (checked above), the result must be absolute.
+		return '/' . implode( '/', $stack );
 	}
 }
