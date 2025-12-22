@@ -45,7 +45,7 @@
 			"@phan",
 			"minus-x check ."
 		],
-		"bench": "@php -d opcache.enable_cli=1 benchmarks/RelPathBench.php",
+		"bench": "@php -d opcache.enable_cli=1 tests/bench.php",
 		"cover": "phpunit --coverage-html coverage",
 		"changelog": "git log --format='* %s (%aN)' --no-merges --reverse $(git describe --tags --abbrev=0 HEAD)...HEAD | sort | grep -vE '^\\* (build|docs?|tests?):'",
 		"fix": [
