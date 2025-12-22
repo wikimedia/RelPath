@@ -22,4 +22,5 @@ $endTime = hrtime( true );
 $totalTimeMs = ( $endTime - $startTime ) / 1_000_000;
 $avgTimeMs = $totalTimeMs / $iterations;
 
+echo "PHP " . PHP_VERSION . "\n";
 echo "RelPath::joinPath average time: " . sprintf( '%.4f', $avgTimeMs ) . " ms\n";
