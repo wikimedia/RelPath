@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0
+
+* Require PHP 8.1 or later, drop support for PHP 7.4 and 8.0. (James D. Forrester)
+* Add native return types and enable `strict_types=1` (Umherirrender)
+* Optimize `RelPath::joinPath` by resolving paths in a single pass (Ori Livneh)
+
 ## 4.0.2
 
 * Fix `getRelativePath()` with multiple ".." parent fragments. (Hannah Okwelum) [T388323](https://phabricator.wikimedia.org/T388323)
