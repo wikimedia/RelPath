@@ -42,17 +42,17 @@
 			"phpunit",
 			"covers-validator",
 			"@phpcs",
-			"phan --allow-polyfill-parser --long-progress-bar",
+			"@phan",
 			"minus-x check ."
 		],
 		"bench": "@php -d opcache.enable_cli=1 benchmarks/RelPathBench.php",
 		"cover": "phpunit --coverage-html coverage",
 		"changelog": "git log --format='* %s (%aN)' --no-merges --reverse $(git describe --tags --abbrev=0 HEAD)...HEAD | sort | grep -vE '^\\* (build|docs?|tests?):'",
 		"fix": [
-			"minus-x fix .",
-			"phpcbf"
+			"phpcbf",
+			"minus-x fix ."
 		],
-		"phan": "phan -d . --long-progress-bar",
+		"phan": "phan --allow-polyfill-parser",
 		"phpcs": "phpcs -sp"
 	},
 	"config": {
