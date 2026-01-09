@@ -102,10 +102,15 @@ class RelPathTest extends TestCase {
 		];
 	}
 
+	private function setIsWindows( bool $isWindows ): void {
+		( new \ReflectionProperty( RelPath::class, 'isWindows' ) )->setValue( null, $isWindows );
+	}
+
 	/**
 	 * @dataProvider provideRelPathTestCases
 	 */
 	public function testRelPath( string $path, string $start, string|false $expected ) {
+		$this->setIsWindows( false );
 		$this->assertSame( $expected, RelPath::getRelativePath( $path, $start ) );
 	}
 
@@ -113,6 +118,47 @@ class RelPathTest extends TestCase {
 	 * @dataProvider provideJoinPathTestCases
 	 */
 	public function testJoinPath( string $base, string $path, string|false $expected ) {
+		$this->setIsWindows( false );
+		$this->assertSame( $expected, RelPath::joinPath( $base, $path ) );
+	}
+
+	public static function provideWindowsRelPathTestCases() {
+		return [
+			'parent slash from subdir'   => [ 'C:\\foo\\bar\\', 'C:\\foo\\bar\\baz\\', '..' ],
+			'parent noslash from subdir' => [ 'C:\\foo\\bar', 'C:\\foo\\bar\\baz\\', '..' ],
+			'different drives'           => [ 'D:\\foo\\bar', 'C:\\foo\\bar', false ],
+			'root from subdir'           => [ 'C:\\', 'C:\\foo\\', '..' ],
+			'subdir from parent'         => [ 'C:\\foo\\bar\\baz\\', 'C:\\foo\\bar\\', 'baz' ],
+			'mixed slashes'              => [ 'C:/foo/bar', 'C:\\foo\\bar\\baz', '..' ],
+			'mixed anchoring'            => [ 'C:\\foo', '\\bar', false ],
+			'mixed anchoring reverse'    => [ '\\foo', 'C:\\bar', false ],
+			'same drive different case'  => [ 'c:\\foo', 'C:\\bar', '../foo' ],
+			'multi-byte common root'     => [ 'C:\\ΔΈΛΤΑ\\foo', 'c:\\δέλτα\\bar', '../foo' ],
+		];
+	}
+
+	public static function provideWindowsJoinPathTestCases() {
+		return [
+			'absolute path'    => [ 'C:\\foo', 'D:\\bar', 'D:\\bar' ],
+			'simple join'      => [ 'C:\\foo', 'bar', 'C:/foo/bar' ],
+			'join with dot'    => [ 'C:\\foo', './bar', 'C:/foo/bar' ],
+			'join with dotdot' => [ 'C:\\foo\\bar', '../baz', 'C:/foo/baz' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideWindowsRelPathTestCases
+	 */
+	public function testRelPathWindows( string $path, string $start, string|false $expected ) {
+		$this->setIsWindows( true );
+		$this->assertSame( $expected, RelPath::getRelativePath( $path, $start ) );
+	}
+
+	/**
+	 * @dataProvider provideWindowsJoinPathTestCases
+	 */
+	public function testJoinPathWindows( string $base, string $path, string|false $expected ) {
+		$this->setIsWindows( true );
 		$this->assertSame( $expected, RelPath::joinPath( $base, $path ) );
 	}
 }
