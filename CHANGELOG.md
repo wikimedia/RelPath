@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1
+
+* Optimize `RelPath::getRelativePath` splitting and fix Windows support (Ori Livneh)
+
 ## 4.1.0
 
 * Require PHP 8.1 or later, drop support for PHP 7.4 and 8.0. (James D. Forrester)
