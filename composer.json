@@ -30,11 +30,11 @@
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "48.0.0",
 		"mediawiki/mediawiki-phan-config": "0.19.0",
-		"mediawiki/minus-x": "1.1.3",
+		"mediawiki/minus-x": "2.0.1",
 		"ockcyp/covers-validator": "1.7.0",
 		"php-parallel-lint/php-console-highlighter": "1.0.0",
 		"php-parallel-lint/php-parallel-lint": "1.4.0",
-		"phpunit/phpunit": "10.5.62"
+		"phpunit/phpunit": "10.5.63"
 	},
 	"scripts": {
 		"test": [
@@ -49,8 +49,8 @@
 		"cover": "phpunit --coverage-html coverage",
 		"changelog": "git log --format='* %s (%aN)' --no-merges --reverse $(git describe --tags --abbrev=0 HEAD)...HEAD | sort | grep -vE '^\\* (build|docs?|tests?):'",
 		"fix": [
-			"phpcbf",
-			"minus-x fix ."
+			"minus-x fix .",
+			"phpcbf"
 		],
 		"phan": "phan --allow-polyfill-parser",
 		"phpcs": "phpcs -sp"
