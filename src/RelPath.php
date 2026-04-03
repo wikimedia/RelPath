@@ -107,16 +107,12 @@ class RelPath {
 			return false;
 		}
 
-		// On Windows, paths must share the same drive or both be root-relative.
-		// They cannot cross drives (C: vs D:) or mix anchoring (C:\ vs \).
+		// On Windows, paths must share the same drive.
+		// They cannot cross drives (C: vs D:).
 		if ( self::$isWindows ) {
 			$path = str_replace( '\\', '/', $path );
 			$start = str_replace( '\\', '/', $start );
-			if ( str_starts_with( $path, '/' ) ) {
-				if ( !str_starts_with( $start, '/' ) ) {
-					return false;
-				}
-			} elseif ( strncasecmp( $path, $start, 2 ) !== 0 ) {
+			if ( !str_starts_with( $path, '/' ) && strncasecmp( $path, $start, 2 ) !== 0 ) {
 				// Paths are on different drives.
 				return false;
 			}
