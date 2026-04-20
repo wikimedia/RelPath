@@ -134,6 +134,7 @@ class RelPathTest extends TestCase {
 			'mixed anchoring reverse'    => [ '\\foo', 'C:\\bar', false ],
 			'same drive different case'  => [ 'c:\\foo', 'C:\\bar', '../foo' ],
 			'multi-byte common root'     => [ 'C:\\ΔΈΛΤΑ\\foo', 'c:\\δέλτα\\bar', '../foo' ],
+			'unix-style absolute paths'  => [ '/foo', '/bar', '../foo' ],
 		];
 	}
 
