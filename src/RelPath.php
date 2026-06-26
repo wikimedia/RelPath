@@ -103,7 +103,7 @@ class RelPath {
 		}
 		// @codeCoverageIgnoreEnd
 
-		if ( !self::isAbsolutePath( $path ) || !self::isAbsolutePath( $start ) ) {
+		if ( !self::isAbsolutePath( $path ) || $start === false || !self::isAbsolutePath( $start ) ) {
 			return false;
 		}
 
